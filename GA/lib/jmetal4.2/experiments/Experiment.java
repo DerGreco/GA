@@ -868,7 +868,7 @@ public abstract class Experiment {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	void generateRBoxplotScripts(int rows,
+	public void generateRBoxplotScripts(int rows,
 			int cols,
 			String[] problems,
 			String prefix,
@@ -885,7 +885,7 @@ public abstract class Experiment {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	void generateRWilcoxonScripts(
+	protected void generateRWilcoxonScripts(
 			String[] problems,
 			String prefix,
 			Experiment experiment) throws FileNotFoundException, IOException {

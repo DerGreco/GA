@@ -129,7 +129,7 @@ public class RunExperiment extends Thread {
 				try {
 					experiment_.algorithmSettings(problemName, problemId, algorithm);
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+					System.out.println("ClassNotFoundException");
 					e1.printStackTrace();
 				}
 
