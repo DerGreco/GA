@@ -30,14 +30,18 @@ public class MyNSGAIIExperiment extends Experiment {
 		        parameters[i] = new HashMap();
 		      } // for
 		      
-		      Crossover c0=new SBXCrossover(new HashMap<String, Object>());
-		      Crossover c1=new BLXAlphaCrossover(new HashMap<String, Object>());
-		      Crossover c2=new DifferentialEvolutionCrossover(new HashMap<String, Object>());
+		      //Crossover c0=new SBXCrossover(new HashMap<String, Object>());
+		      //Crossover c1=new BLXAlphaCrossover(new HashMap<String, Object>());
+		      //Crossover c2=new DifferentialEvolutionCrossover(new HashMap<String, Object>());
 		      
+		      //String c0="SBXCrossover";		      
+		      //String c1="DifferentialEvolutionCrossover";
+		      //Todavia salta excepcion con BLX
+		      String c2="BLXAlphaCrossover";
 
-		      parameters[0].put("crossoverOperator_", c0);
-		      parameters[1].put("crossoverOperator_", c1);
-		      parameters[2].put("crossoverOperator_", c2);		      
+		      //parameters[0].put("crossoverOperator_", c0);
+		      //parameters[1].put("crossoverOperator_", c1);
+		      parameters[0].put("crossoverOperator_", c2);		      
 
 		      if ((!paretoFrontFile_[problemIndex].equals("")) || 
 		      		(paretoFrontFile_[problemIndex] == null)) {
@@ -46,9 +50,11 @@ public class MyNSGAIIExperiment extends Experiment {
 		      } // if
 		 
 		      Settings s=null;
+		      Algorithm a=null;
 		      for (int i = 0; i < numberOfAlgorithms; i++){
 		    	s = new MyNSGAIISettings(problemName);
-		        algorithm[i] = s.configure(parameters[i]);
+		    	a = s.configure(parameters[i]);
+		        algorithm[i] = a;
 		      }
 		      
 		    } catch (IllegalArgumentException ex) {
@@ -65,19 +71,27 @@ public class MyNSGAIIExperiment extends Experiment {
 	    
 	    exp.experimentName_  = "MyNSGAIIExperiment" ;
 	    exp.algorithmNameList_   = new String[] {
-	      "NSGAIIa", "NSGAIIb", "NSGAIIc"} ;
+	      //"NSGAII+SBX",
+    	  //"NSGAII+Diff",
+	      "NSGAII+BLX"
+	      } ;
 	    exp.problemList_     = new String[] {
 	      "MyProblem"} ;
 	    exp.paretoFrontFile_ = new String[] {
 	      ""} ;
-	    //exp.indicatorList_   = new String[] {"HV", "SPREAD", "IGD", "EPSILON"} ;
+	    exp.indicatorList_   = new String[] {"HV", "SPREAD", "IGD", "EPSILON"} ;
 	    
 	    int numberOfAlgorithms = exp.algorithmNameList_.length ;
 
+	    //Para casa
 	    exp.experimentBaseDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\results" +
 	                                   exp.experimentName_;
 	    
-	    //exp.paretoFrontDirectory_ = "/Users/antonio/Softw/pruebas/data/paretoFronts";
+	    //Para curro
+	    //exp.experimentBaseDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\results" +
+	    //								exp.experimentName_;
+	    	    
+	    exp.paretoFrontDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";	    
 	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    

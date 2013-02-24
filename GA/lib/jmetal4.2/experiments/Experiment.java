@@ -250,7 +250,7 @@ public abstract class Experiment {
 
 		checkParetoFronts();
 
-		if (indicatorList_.length > 0) {
+		if (indicatorList_!=null && indicatorList_.length > 0) {
 
 			for (int algorithmIndex=0; algorithmIndex<algorithmNameList_.length; algorithmIndex++) {
 

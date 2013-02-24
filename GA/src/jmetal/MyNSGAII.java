@@ -1,5 +1,8 @@
 package jmetal;
 
+import operators.crossover.BLXAlphaCrossover;
+import operators.crossover.DifferentialEvolutionCrossover;
+import operators.crossover.SBXCrossover;
 import qualityIndicator.QualityIndicator;
 import util.Distance;
 import util.JMException;
@@ -79,21 +82,40 @@ public class MyNSGAII extends NSGAII {
 			// Create the offSpring solutionSet      
 			offspringPopulation = new SolutionSet(populationSize);
 			Solution[] parents = new Solution[2];
+			Object[] parents_for_diff=new Object[2];
+			Solution[] inner_parents=new Solution[3];
 			for (int i = 0; i < (populationSize / 2); i++) {
 				if (evaluations < maxEvaluations) {
 					//obtain parents
-					parents[0] = (Solution) selectionOperator.execute(population);
-					parents[1] = (Solution) selectionOperator.execute(population);
-					Solution[] offSpring = (Solution[]) crossoverOperator.execute(parents);
-					mutationOperator.execute(offSpring[0]);
-					mutationOperator.execute(offSpring[1]);
-					problem_.evaluateConstraints(offSpring[0]);
-					problem_.evaluate(offSpring[0]);
-					problem_.evaluateConstraints(offSpring[1]);
-					problem_.evaluate(offSpring[1]);					
-					offspringPopulation.add(offSpring[0]);
-					offspringPopulation.add(offSpring[1]);
-					evaluations += 2;
+					//chapuza considerable para permitir el uso de varios operadores de cruce
+					if(crossoverOperator instanceof SBXCrossover ||
+					   crossoverOperator instanceof BLXAlphaCrossover){
+						parents[0] = (Solution) selectionOperator.execute(population);
+						parents[1] = (Solution) selectionOperator.execute(population);
+						Solution[] offSpring = (Solution[]) crossoverOperator.execute(parents);
+						mutationOperator.execute(offSpring[0]);
+						mutationOperator.execute(offSpring[1]);
+						problem_.evaluateConstraints(offSpring[0]);
+						problem_.evaluate(offSpring[0]);
+						problem_.evaluateConstraints(offSpring[1]);
+						problem_.evaluate(offSpring[1]);					
+						offspringPopulation.add(offSpring[0]);
+						offspringPopulation.add(offSpring[1]);
+						evaluations += 2;
+					}else if(crossoverOperator instanceof DifferentialEvolutionCrossover){
+						parents_for_diff[0]=(Solution) selectionOperator.execute(population);
+						inner_parents[0]=(Solution) selectionOperator.execute(population);
+						inner_parents[1]=(Solution) selectionOperator.execute(population);
+						inner_parents[2]=(Solution) selectionOperator.execute(population);
+						parents_for_diff[1]=inner_parents;
+						Solution offSpring = (Solution) crossoverOperator.execute(parents_for_diff);
+						mutationOperator.execute(offSpring);
+						problem_.evaluateConstraints(offSpring);
+						problem_.evaluate(offSpring);
+						offspringPopulation.add(offSpring);
+						evaluations++;
+					}
+					
 				} // if                            
 			} // for
 	

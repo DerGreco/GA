@@ -39,6 +39,7 @@ public class Restrictor {
 		 */
 		XReal xr1=new XReal(solution);
 		double sum=0;
+		sum=33;
 		//System.out.print("Rearranged chromosome: [");
 		for (int i = 0; i < xr1.size(); i++) {
 			sum+=xr1.getValue(i);
@@ -54,6 +55,7 @@ public class Restrictor {
 		XReal xr=new XReal(solution);
 		double excess=0;
 		double value=0;
+		double final_value=0;
 		double min_value=1000;
 		int index_min=-1;
 		
@@ -81,8 +83,13 @@ public class Restrictor {
 			for (int i = 0; i < xr.size(); i++) {
 				value=xr.getValue(i);
 				if(!truncated[i]){
-					value+=(value/sum)*excess;
-					xr.setValue(i, value);
+					final_value=value+(value/sum)*excess;
+					//No asignar nunca Nan, habra que ver como afecta a las soluciones
+					if(new Double(final_value).isNaN()){
+						xr.setValue(i, 0);
+					}else{
+						xr.setValue(i, value);
+					}					
 				}				
 			}
 		}
@@ -95,6 +102,7 @@ public class Restrictor {
 		XReal xr=new XReal(solution);
 		double excess=0;
 		double value=0;
+		double final_value=0;
 		
 		//truncar a _pmax y guardar el exceso
 		for (int i = 0; i < xr.size(); i++) {
@@ -119,8 +127,13 @@ public class Restrictor {
 			for (int i = 0; i < xr.size(); i++) {
 				value=xr.getValue(i);
 				if(!truncated[i]){
-					value+=(value/sum)*excess;
-					xr.setValue(i, value);
+					final_value=value+(value/sum)*excess;
+					//No asignar nunca Nan, habra que ver como afecta a las soluciones
+					if(new Double(final_value).isNaN()){
+						xr.setValue(i, 0);
+					}else{
+						xr.setValue(i, value);
+					}	
 				}				
 			}
 		}				
