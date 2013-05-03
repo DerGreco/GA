@@ -34,14 +34,13 @@ public class MyNSGAIIExperiment extends Experiment {
 		      //Crossover c1=new BLXAlphaCrossover(new HashMap<String, Object>());
 		      //Crossover c2=new DifferentialEvolutionCrossover(new HashMap<String, Object>());
 		      
-		      //String c0="SBXCrossover";		      
-		      //String c1="DifferentialEvolutionCrossover";
-		      //Todavia salta excepcion con BLX
+		      String c0="SBXCrossover";		      
+		      String c1="DifferentialEvolutionCrossover";		      
 		      String c2="BLXAlphaCrossover";
 
-		      //parameters[0].put("crossoverOperator_", c0);
-		      //parameters[1].put("crossoverOperator_", c1);
-		      parameters[0].put("crossoverOperator_", c2);		      
+		      parameters[0].put("crossoverOperator_", c0);
+		      parameters[1].put("crossoverOperator_", c1);
+		      parameters[2].put("crossoverOperator_", c2);		      
 
 		      if ((!paretoFrontFile_[problemIndex].equals("")) || 
 		      		(paretoFrontFile_[problemIndex] == null)) {
@@ -71,8 +70,8 @@ public class MyNSGAIIExperiment extends Experiment {
 	    
 	    exp.experimentName_  = "MyNSGAIIExperiment" ;
 	    exp.algorithmNameList_   = new String[] {
-	      //"NSGAII+SBX",
-    	  //"NSGAII+Diff",
+	      "NSGAII+SBX",
+    	  "NSGAII+Diff",
 	      "NSGAII+BLX"
 	      } ;
 	    exp.problemList_     = new String[] {
@@ -84,18 +83,20 @@ public class MyNSGAIIExperiment extends Experiment {
 	    int numberOfAlgorithms = exp.algorithmNameList_.length ;
 
 	    //Para casa
+	    /*
 	    exp.experimentBaseDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\results" +
 	                                   exp.experimentName_;
-	    
+	    exp.paretoFrontDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";
+	    */
 	    //Para curro
-	    //exp.experimentBaseDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\results" +
-	    //								exp.experimentName_;
+	    exp.experimentBaseDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\results" +
+	    								exp.experimentName_;
+	    exp.paretoFrontDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";	    
 	    	    
-	    exp.paretoFrontDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";	    
 	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
-	    exp.independentRuns_ = 1 ;
+	    exp.independentRuns_ = 10 ;
 	    
 	    // Run the experiments
 	    int numberOfThreads ;

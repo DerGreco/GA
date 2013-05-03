@@ -46,7 +46,7 @@ public class BLXAlphaCrossover extends Crossover {
 	protected static final double DEFAULT_ALPHA = 0.5;
 
 	private double alpha_ = DEFAULT_ALPHA ;
-	private Double crossoverProbability_ = null;
+	private Double crossoverProbability_ = 0.9;
 
 	/**
 	 * Valid solution types to apply this operator 

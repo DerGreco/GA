@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import core.Solution;
 import operators.Normalizer;
-import operators.Restrictor;
+import operators.ProportionalRestrictor;
 import operators.crossover.SBXCrossover;
 import util.JMException;
 import util.wrapper.XReal;
 
 public class NormSBXCrossover extends SBXCrossover {
 	
-	Restrictor rest=new Restrictor();
+	ProportionalRestrictor rest=new ProportionalRestrictor();
 	Normalizer norm=new Normalizer();
 	
 	public NormSBXCrossover(HashMap<String, Object> parameters) {
