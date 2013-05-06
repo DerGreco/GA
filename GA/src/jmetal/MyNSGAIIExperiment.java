@@ -83,17 +83,18 @@ public class MyNSGAIIExperiment extends Experiment {
 	    int numberOfAlgorithms = exp.algorithmNameList_.length ;
 
 	    //Para casa
-	    /*
+	    
 	    exp.experimentBaseDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\results" +
 	                                   exp.experimentName_;
 	    exp.paretoFrontDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";
-	    */
+	    
 	    //Para curro
+	    /*
 	    exp.experimentBaseDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\results" +
 	    								exp.experimentName_;
 	    exp.paretoFrontDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";	    
 	    	    
-	    
+	    */
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
 	    exp.independentRuns_ = 10 ;
