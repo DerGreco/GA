@@ -1,7 +1,9 @@
 package jmetal;
 
+import operators.GreedyRestrictor;
 import operators.Normalizer;
 import operators.ProportionalRestrictor;
+import operators.Restrictor;
 import data_structures.Matrices;
 import core.Problem;
 import core.Solution;
@@ -52,7 +54,7 @@ public class MyProblem extends Problem {
 	
 	public void evaluateConstraints (Solution s) throws JMException{
 		Normalizer norm=new Normalizer();
-		ProportionalRestrictor rest=new ProportionalRestrictor();
+		Restrictor rest=new GreedyRestrictor();
 		norm.norm(s);
 		rest.rearrange(s);
 	}
