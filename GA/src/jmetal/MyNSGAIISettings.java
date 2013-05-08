@@ -47,7 +47,7 @@ public class MyNSGAIISettings extends Settings {
 	    Object [] problemParams = {"Real"};
 	    //problem_ = (new ProblemFactory()).getProblem(problemName_, problemParams);
 		try {
-			problem_ = new MyProblem(new Matrices());
+			problem_ = new MyProblem(new Matrices(Integer.parseInt(problem)));
 		} catch (ClassNotFoundException e) {
 			System.out.println("Problemas en la constuccion del problema");
 			e.printStackTrace();

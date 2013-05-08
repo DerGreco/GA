@@ -1,6 +1,8 @@
 package operators;
 
 import java.util.Collections;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.Vector;
 
 import util.JMException;
@@ -20,13 +22,23 @@ public class GreedyRestrictor implements Restrictor {
 		XReal xr=new XReal(solution);
 		double excess=0;
 		double value=0;
-		Vector<Integer> ordered_indexes=sortValues(solution);					
+		Vector<Integer> ordered_indexes=sortValues(solution);				
 		for (Integer i : ordered_indexes) {
 			value=xr.getValue(i);
+			//Si excede el maximo truncar al maximo y guardar el exceso
 			if(value>_pmax){
 				excess+=value-_pmax;					
 				xr.setValue(i, _pmax);
-			}else if(_pmin<=value && value<=_pmax){
+			}else if(value<_pmin){
+				//Si no llega al minimo truncar a cero y guardar el exceso		
+				xr.setValue(i, 0);
+				excess+=value;
+			}				
+		}
+		for (Integer i : ordered_indexes) {
+			value=xr.getValue(i);			
+			//Si es un valor intermedio rellenar hasta el maximo, o hasta donde permita el exceso
+			if(_pmin<=value && value<=_pmax){
 				if(value+excess<=_pmax){
 					xr.setValue(i, value+excess);
 					excess=0;						
@@ -34,38 +46,36 @@ public class GreedyRestrictor implements Restrictor {
 					xr.setValue(i, _pmax);
 					excess-=(_pmax-value);
 				}
-			}else{
-				xr.setValue(i, 0);
-				excess+=value;
-			}						
+			}
 		}
-		//Si al terminar el exceso es distinto de cero, ir rellenando en orden
-		int prev_index=-1;
-		double prev_value=0;
+		//Si al terminar el exceso es distinto de cero, ir rellenando en orden		
+		boolean reversed=false;
 		if(excess>0){
 			for (Integer i : ordered_indexes) {
 				value=xr.getValue(i);
-				if(value==0){
-					if(excess>=_pmax){
+				if(value<_pmax){
+					if(value+excess>_pmax){
 						xr.setValue(i, _pmax);
-						excess-=_pmax;
-					}else if(_pmin<=excess && excess<_pmax){
-						xr.setValue(i, excess);
-						excess=0;
-					//aqui el exceso es menor que _pmin, con lo que habra que sustraer
-					//al anterior hasta completar _pmin
-					}else{ 
-						prev_value=xr.getValue(prev_index);
-						xr.setValue(prev_index, prev_value-(_pmin-excess));
-						xr.setValue(i, _pmin);
-					}
-				}
-				prev_index=i;
+						excess-=(_pmax-value);
+					}else if(value+excess>=_pmin && value+excess<=_pmax){
+						xr.setValue(i, value+excess);
+						excess=0;						
+					}else if(value==0 && excess<_pmin && excess>0){
+						if(!reversed){
+							Collections.reverse(ordered_indexes);
+							reversed=true;
+						}else{
+							System.out.println("Se supone que no deberia pasar por aqui mas que una vez");
+						}
+						redistribute(ordered_indexes, solution);
+					}					
+				}				
 			}
-		}
+		}		
 	}
 	
-	private Vector<Integer> sortValues(Solution s) throws JMException{		
+	private Vector<Integer> sortValues(Solution s) throws JMException{	
+		SortedSet<Integer> orden=new TreeSet<Integer>();
 		Vector<Integer> toRet=new Vector<Integer>();
 		Vector<Double> aux=new Vector<Double>();
 		XReal xr=new XReal(s);
@@ -74,10 +84,37 @@ public class GreedyRestrictor implements Restrictor {
 		Collections.sort(aux);
 		for (Double d : aux) {
 			for (int i = 0; i < xr.size(); i++) {
-				if(d==xr.getValue(i))toRet.add(new Integer(i));
+				if(d==xr.getValue(i))orden.add(new Integer(i));
 			}
 		}
+		for (Integer i : orden) {
+			toRet.add(i);
+		}
 		Collections.reverse(toRet);
+		if(toRet.size()!=11)System.out.println("malo");
 		return toRet;
 	}
+
+	private void redistribute(Vector<Integer> reverseOrder, Solution s) throws JMException{
+		
+		XReal xr=new XReal(s);
+		int index_to_min=-1;
+		double value=0;
+		double to_min=0;
+		
+		for (Integer i : reverseOrder) {
+			value=xr.getValue(i);
+			if(value==0)index_to_min=i;
+			else{				
+				if(value-to_min>=_pmin){
+					xr.setValue(index_to_min, _pmin);
+					xr.setValue(i, value-to_min);
+				}else{
+					xr.setValue(i, _pmin);
+					to_min=value-_pmin;
+				}
+			}
+		}
+	}
+	
 }

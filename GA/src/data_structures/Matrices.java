@@ -36,13 +36,14 @@ public class Matrices {
 	 * 
 	 * Demasiado hardcoded (fichero y dimensiones)
 	 */
-	public Matrices(){
+	public Matrices(int offset){
 		
 		boolean escribirFichero=false;
 		
 		DescriptiveStatistics d=new DescriptiveStatistics();
 		double store=0;
-		_rendimientos=new double[11][115];				
+		double[][] cargaRend=new double[11][115];
+		_rendimientos=new double[11][100];				
 		
 		if(escribirFichero){
 			/*
@@ -80,14 +81,16 @@ public class Matrices {
 			try {
 				FileInputStream fis = new FileInputStream("rend.dat");
 				ObjectInputStream iis = new ObjectInputStream(fis);
-				_rendimientos = (double[][]) iis.readObject();
-				for (int i = 0; i < _rendimientos.length; i++) {
-					for (int j = 0; j < _rendimientos[i].length; j++) {
-						d.addValue(_rendimientos[i][j]);
+				cargaRend = (double[][]) iis.readObject();
+				/*
+				for (int i = 0; i < cargaRend.length; i++) {
+					for (int j = 0; j < cargaRend[i].length; j++) {
+						d.addValue(cargaRend[i][j]);
 					}
 					_rendimientoMedio[i]=d.getMean();
 					d.clear();
 				}
+				*/
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -98,10 +101,15 @@ public class Matrices {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}			
-		
-		
-		
+		}
+		for (int i = 0; i < _rendimientos.length; i++) {
+			for (int j = 0; j < _rendimientos[i].length; j++) {
+				_rendimientos[i][j]=cargaRend[i][j+offset];
+				d.addValue(_rendimientos[i][j]);
+			}
+			_rendimientoMedio[i]=d.getMean();
+			d.clear();
+		}
 		_matrizRendimientos=new Array2DRowRealMatrix(_rendimientos);
 		_covarianza=new Covariance(_matrizRendimientos).getCovarianceMatrix();
 		_correlacion=new PearsonsCorrelation(_rendimientos).getCorrelationMatrix();
@@ -117,8 +125,5 @@ public class Matrices {
 
 	public double[] get_rendimientoMedio() {
 		return _rendimientoMedio;
-	}
-	
-	
-
+	}		
 }

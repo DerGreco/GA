@@ -61,7 +61,7 @@ public class Main {
 	    
 	    _indicators = null ;
 	    
-	    _problem=new MyProblem(new Matrices());
+	    _problem=new MyProblem(new Matrices(0));
 	    _algorithm=new MyNSGAII(_problem);
 	    
 	    _algorithm.setInputParameter("populationSize",100);

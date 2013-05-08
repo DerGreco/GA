@@ -75,26 +75,27 @@ public class MyNSGAIIExperiment extends Experiment {
 	      "NSGAII+BLX"
 	      } ;
 	    exp.problemList_     = new String[] {
-	      "MyProblem"} ;
+	      "0","1","2","3","4","5","6","7","8","9"} ;
 	    exp.paretoFrontFile_ = new String[] {
-	      ""} ;
+	      "","","","","","","","","",""} ;
 	    exp.indicatorList_   = new String[] {"HV", "SPREAD", "IGD", "EPSILON"} ;
 	    
 	    int numberOfAlgorithms = exp.algorithmNameList_.length ;
 
 	    //Para casa
 	    
+	    /*
 	    exp.experimentBaseDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\results" +
 	                                   exp.experimentName_;
 	    exp.paretoFrontDirectory_ = "C:\\Users\\Dani\\git\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";
-	    
+	    */
 	    //Para curro
-	    /*
+	    
 	    exp.experimentBaseDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\results" +
 	    								exp.experimentName_;
 	    exp.paretoFrontDirectory_ = "C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA\\resultsMyNSGAIIExperiment\\referenceFronts";	    
 	    	    
-	    */
+	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
 	    exp.independentRuns_ = 10 ;
