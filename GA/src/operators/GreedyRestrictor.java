@@ -64,8 +64,6 @@ public class GreedyRestrictor implements Restrictor {
 						if(!reversed){
 							Collections.reverse(ordered_indexes);
 							reversed=true;
-						}else{
-							System.out.println("Se supone que no deberia pasar por aqui mas que una vez");
 						}
 						redistribute(ordered_indexes, solution);
 					}					
@@ -90,8 +88,7 @@ public class GreedyRestrictor implements Restrictor {
 		for (Integer i : orden) {
 			toRet.add(i);
 		}
-		Collections.reverse(toRet);
-		if(toRet.size()!=11)System.out.println("malo");
+		Collections.reverse(toRet);		
 		return toRet;
 	}
 

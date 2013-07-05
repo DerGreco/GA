@@ -54,7 +54,7 @@ public class MyProblem extends Problem {
 	
 	public void evaluateConstraints (Solution s) throws JMException{
 		Normalizer norm=new Normalizer();
-		Restrictor rest=new GreedyRestrictor();
+		Restrictor rest=new ProportionalRestrictor();
 		norm.norm(s);
 		rest.rearrange(s);
 	}

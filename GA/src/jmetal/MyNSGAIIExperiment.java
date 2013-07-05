@@ -34,13 +34,11 @@ public class MyNSGAIIExperiment extends Experiment {
 		      //Crossover c1=new BLXAlphaCrossover(new HashMap<String, Object>());
 		      //Crossover c2=new DifferentialEvolutionCrossover(new HashMap<String, Object>());
 		      
-		      String c0="SBXCrossover";		      
-		      String c1="DifferentialEvolutionCrossover";		      
-		      String c2="BLXAlphaCrossover";
+		      String c0="SBXCrossover";		      		      	     
+		      String c1="BLXAlphaCrossover";
 
 		      parameters[0].put("crossoverOperator_", c0);
-		      parameters[1].put("crossoverOperator_", c1);
-		      parameters[2].put("crossoverOperator_", c2);		      
+		      parameters[1].put("crossoverOperator_", c1);		      	     
 
 		      if ((!paretoFrontFile_[problemIndex].equals("")) || 
 		      		(paretoFrontFile_[problemIndex] == null)) {
@@ -71,13 +69,12 @@ public class MyNSGAIIExperiment extends Experiment {
 	    exp.experimentName_  = "MyNSGAIIExperiment" ;
 	    exp.algorithmNameList_   = new String[] {
 	      "NSGAII+SBX",
-    	  "NSGAII+Diff",
 	      "NSGAII+BLX"
 	      } ;
 	    exp.problemList_     = new String[] {
-	      "0","1","2","3","4","5","6","7","8","9"} ;
+	      "0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"} ;
 	    exp.paretoFrontFile_ = new String[] {
-	      "","","","","","","","","",""} ;
+	      "","","","","","","","","","","","","","",""} ;
 	    exp.indicatorList_   = new String[] {"HV", "SPREAD", "IGD", "EPSILON"} ;
 	    
 	    int numberOfAlgorithms = exp.algorithmNameList_.length ;
@@ -98,7 +95,7 @@ public class MyNSGAIIExperiment extends Experiment {
 	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
-	    exp.independentRuns_ = 10 ;
+	    exp.independentRuns_ = 20 ;
 	    
 	    // Run the experiments
 	    int numberOfThreads ;

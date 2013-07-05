@@ -2,36 +2,36 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2013-02-11T17:40:13</date>
-  <millis>1360600813507</millis>
+  <date>2013-06-25T11:05:03</date>
+  <millis>1372151103061</millis>
   <sequence>0</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>runtime.Main</class>
   <method>main</method>
-  <thread>1</thread>
-  <message>Total execution time: 887ms</message>
+  <thread>10</thread>
+  <message>Total execution time: 1885ms</message>
 </record>
 <record>
-  <date>2013-02-11T17:40:13</date>
-  <millis>1360600813558</millis>
+  <date>2013-06-25T11:05:03</date>
+  <millis>1372151103400</millis>
   <sequence>1</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>runtime.Main</class>
   <method>main</method>
-  <thread>1</thread>
+  <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2013-02-11T17:40:13</date>
-  <millis>1360600813587</millis>
+  <date>2013-06-25T11:05:03</date>
+  <millis>1372151103438</millis>
   <sequence>2</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>runtime.Main</class>
   <method>main</method>
-  <thread>1</thread>
+  <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 </log>
