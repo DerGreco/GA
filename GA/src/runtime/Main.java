@@ -20,6 +20,7 @@ import core.Operator;
 import core.Problem;
 import core.SolutionSet;
 import metaheuristics.nsgaII.NSGAII;
+import operators.GreedyRestrictor;
 import operators.crossover.CrossoverFactory;
 import operators.crossover.SBXCrossover;
 import operators.mutation.MutationFactory;
@@ -61,7 +62,7 @@ public class Main {
 	    
 	    _indicators = null ;
 	    
-	    _problem=new MyProblem(new Matrices(0));
+	    _problem=new MyProblem(new Matrices(0), new GreedyRestrictor());
 	    _algorithm=new MyNSGAII(_problem);
 	    
 	    _algorithm.setInputParameter("populationSize",100);

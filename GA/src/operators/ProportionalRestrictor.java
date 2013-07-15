@@ -148,4 +148,9 @@ public class ProportionalRestrictor implements Restrictor {
 		}
 		return b;
 	}
+
+	@Override
+	public String getName() {		
+		return "Prop";
+	}
 }

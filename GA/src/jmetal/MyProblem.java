@@ -13,9 +13,10 @@ import util.wrapper.XReal;
 
 public class MyProblem extends Problem {
 	
-	Matrices _m=null;	
+	Matrices _m=null;
+	Restrictor _rest=null;	
 
-	public MyProblem(Matrices m) throws ClassNotFoundException{
+	public MyProblem(Matrices m, Restrictor r) throws ClassNotFoundException{
 		solutionType_=new ArrayRealSolutionType(this); //can throw the above exception
 		numberOfVariables_=11;
 		numberOfConstraints_=0;
@@ -32,6 +33,7 @@ public class MyProblem extends Problem {
 		lowerLimit_=zeros;
 		upperLimit_=ones;
 		_m=m;
+		_rest=r;
 	}
 	
 	
@@ -53,10 +55,9 @@ public class MyProblem extends Problem {
 	}
 	
 	public void evaluateConstraints (Solution s) throws JMException{
-		Normalizer norm=new Normalizer();
-		Restrictor rest=new ProportionalRestrictor();
+		Normalizer norm=new Normalizer();			
 		norm.norm(s);
-		rest.rearrange(s);
+		_rest.rearrange(s);
 	}
 
 

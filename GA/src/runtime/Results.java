@@ -15,9 +15,9 @@ public class Results {
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {		
+	public void results(String[] f) throws IOException {		
 		String [] indicators={"EPSILON","IGD","SPREAD","HV"};
-		String [] operators={"NSGAII+BLX","NSGAII+SBX"};
+		String [] operators={"BLX","SBX"};
 		int runs=15;
 		double aux=0;
 		String str="";
@@ -27,12 +27,12 @@ public class Results {
 		for (int i = 0; i < operators.length; i++) {
 			for (int j = 0; j < indicators.length; j++) {
 				pw.add(new PrintWriter("C:\\Users\\9dgonzalezg\\Desktop\\workspace\\GA\\GA" +
-						"\\resultsMyNSGAIIExperiment\\data\\"+new String(operators[i].substring(7))
+						"\\resultsMyNSGAIIExperiment\\data\\"+new String(f[i])
 						+"_"+indicators[j]+".res"));
 				for(int k=0; k<runs; k++){
 					br=new BufferedReader(new FileReader("C:\\Users\\9dgonzalezg" +
 							"\\Desktop\\workspace\\GA\\GA\\resultsMyNSGAIIExperiment\\" +
-							"data\\"+operators[i]+"\\"+new Integer(k).toString()+"\\"+
+							"data\\"+f[i]+"\\"+new Integer(k).toString()+"\\"+
 							indicators[j]));
 					str=br.readLine();
 					while (str!=null) {

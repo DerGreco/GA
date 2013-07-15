@@ -1,10 +1,14 @@
 package jmetal;
 
 import java.io.IOException;
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import operators.Restrictor;
 import operators.crossover.BLXAlphaCrossover;
 import operators.crossover.Crossover;
 import operators.crossover.DifferentialEvolutionCrossover;
@@ -19,6 +23,12 @@ import experiments.settings.NSGAII_Settings;
 
 public class MyNSGAIIExperiment extends Experiment {
 
+	private Restrictor _r=null;
+	
+		public MyNSGAIIExperiment(Restrictor r){
+		_r=r;
+	}
+	
 	@Override
 	public void algorithmSettings(String problemName, int problemId, Algorithm[] algorithm) throws ClassNotFoundException {
 		try {
@@ -49,7 +59,7 @@ public class MyNSGAIIExperiment extends Experiment {
 		      Settings s=null;
 		      Algorithm a=null;
 		      for (int i = 0; i < numberOfAlgorithms; i++){
-		    	s = new MyNSGAIISettings(problemName);
+		    	s = new MyNSGAIISettings(problemName, _r);
 		    	a = s.configure(parameters[i]);
 		        algorithm[i] = a;
 		      }
@@ -63,13 +73,12 @@ public class MyNSGAIIExperiment extends Experiment {
 		    }
 	}
 	
-	public static void main(String[] args) throws JMException, IOException {
-	    MyNSGAIIExperiment exp = new MyNSGAIIExperiment() ; // exp = experiment
-	    
+	public String[] experiment() throws JMException, IOException {
+		MyNSGAIIExperiment exp=this;		
 	    exp.experimentName_  = "MyNSGAIIExperiment" ;
 	    exp.algorithmNameList_   = new String[] {
-	      "NSGAII+SBX",
-	      "NSGAII+BLX"
+	      "SBX"+_r.getName(),
+	      "BLX"+_r.getName()
 	      } ;
 	    exp.problemList_     = new String[] {
 	      "0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"} ;
@@ -95,7 +104,7 @@ public class MyNSGAIIExperiment extends Experiment {
 	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
-	    exp.independentRuns_ = 20 ;
+	    exp.independentRuns_ = 2 ;
 	    
 	    // Run the experiments
 	    int numberOfThreads ;
@@ -118,6 +127,7 @@ public class MyNSGAIIExperiment extends Experiment {
 	    boolean notch ;
 	    exp.generateRBoxplotScripts(rows, columns, problems, prefix, notch = true, exp) ;
 	    exp.generateRWilcoxonScripts(problems, prefix, exp) ;  
+	    return exp.algorithmNameList_;
 	  } // main
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import metaheuristics.nsgaII.NSGAII;
 
+import operators.Restrictor;
 import operators.crossover.BLXAlphaCrossover;
 import operators.crossover.Crossover;
 import operators.crossover.CrossoverFactory;
@@ -41,13 +42,13 @@ public class MyNSGAIISettings extends Settings {
 	   * Constructor
 	   * @throws JMException 
 	   */
-	  public MyNSGAIISettings(String problem) throws JMException {
+	  public MyNSGAIISettings(String problem, Restrictor r) throws JMException {
 	    super(problem) ;
 	    
 	    Object [] problemParams = {"Real"};
 	    //problem_ = (new ProblemFactory()).getProblem(problemName_, problemParams);
 		try {
-			problem_ = new MyProblem(new Matrices(Integer.parseInt(problem)));
+			problem_ = new MyProblem(new Matrices(Integer.parseInt(problem)),r);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Problemas en la constuccion del problema");
 			e.printStackTrace();

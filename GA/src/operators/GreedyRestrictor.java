@@ -113,5 +113,10 @@ public class GreedyRestrictor implements Restrictor {
 			}
 		}
 	}
+
+	@Override
+	public String getName() {		
+		return "Greedy";
+	}
 	
 }
