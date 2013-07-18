@@ -17,7 +17,7 @@ public class Results {
 	 */
 	public void results(String[] f) throws IOException {		
 		String [] indicators={"EPSILON","IGD","SPREAD","HV"};
-		String [] operators={"BLX","SBX"};
+		String [] operators={"BLX","SBX","DEX"};
 		int runs=15;
 		double aux=0;
 		String str="";

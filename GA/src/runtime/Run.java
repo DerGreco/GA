@@ -24,16 +24,15 @@ public class Run {
 	 * @throws JMException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException, JMException {
-		/*
-		MyNSGAIIExperiment exp=new MyNSGAIIExperiment(new ProportionalRestrictor());
-		Results res=new Results();
+		Results res=new Results();		
+		MyNSGAIIExperiment exp=new MyNSGAIIExperiment(new ProportionalRestrictor());		
 		String[] folders=new String[2];
-		folders=exp.experiment();
+		folders=exp.experiment();	
 		res.results(folders);
 		exp=new MyNSGAIIExperiment(new GreedyRestrictor());
 		folders=exp.experiment();
 		res.results(folders);
-		*/
+		
 		String[] command ={"cmd"};
 		String[] envp = {"path="+System.getenv("Path")};		
 	    Process p = Runtime.getRuntime().exec(command, envp);	    
