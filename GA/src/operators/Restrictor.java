@@ -8,4 +8,8 @@ public interface Restrictor {
 	public void rearrange(Solution solution) throws JMException;
 	
 	public String getName();
+	
+	public double getMax();
+	
+	public double getMin();
 }

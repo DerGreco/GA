@@ -1,5 +1,10 @@
 package operators;
 
+import java.io.PrintWriter;
+
+import jmetal.MyProblem;
+
+import data_structures.Matrices;
 import data_structures.RestrictorResult;
 import core.Solution;
 import util.JMException;
@@ -10,7 +15,7 @@ public class ProportionalRestrictor implements Restrictor {
 	private double _pmax=.35;
 	private double _pmin=.1;
 	private RestrictorResult _result=null;		
-	
+
 	public void rearrange(Solution solution) throws JMException {
 		
 		//Variables auxiliares componentes del RestrictorResult
@@ -32,24 +37,8 @@ public class ProportionalRestrictor implements Restrictor {
 			_result=truncateAllAboveMax(truncated, solution);
 			changedMaxAux=_result.is_changed();
 			truncated=_result.get_truncated();
-		} while (changedMaxAux || changedMinAux);
-		
-		/*
-		 * Codigo para depuracion
-		 */
-		/*
-		XReal xr1=new XReal(solution);
-		double sum=0;
-		sum=33;
-		//System.out.print("Rearranged chromosome: [");
-		for (int i = 0; i < xr1.size(); i++) {
-			sum+=xr1.getValue(i);
-			//System.out.print(xr1.getValue(i)+",");
-		}
-		*/
-		//System.out.println("]");
-		//System.out.println("Normalization = "+sum);
-	}		
+		} while (changedMaxAux || changedMinAux);		
+	}
 	
 	private RestrictorResult truncateOneBelowMin(boolean[] truncated, Solution solution) throws JMException {
 		
@@ -57,7 +46,6 @@ public class ProportionalRestrictor implements Restrictor {
 		XReal xr=new XReal(solution);
 		double excess=0;
 		double value=0;
-		double final_value=0;
 		double min_value=1000;
 		int index_min=-1;
 		
@@ -74,26 +62,7 @@ public class ProportionalRestrictor implements Restrictor {
 			xr.setValue(index_min, 0);
 			truncated[index_min]=true;
 			excess=min_value;			
-			//repartir el exceso de modo proporcional entre los no truncados
-			double sum=0;
-			for (int i = 0; i < xr.size(); i++) {
-				value=xr.getValue(i);
-				if(!truncated[i]){
-					sum+=value;
-				}				
-			}
-			for (int i = 0; i < xr.size(); i++) {
-				value=xr.getValue(i);
-				if(!truncated[i]){
-					final_value=value+(value/sum)*excess;
-					//No asignar nunca Nan, habra que ver como afecta a las soluciones
-					if(new Double(final_value).isNaN()){
-						xr.setValue(i, 0);
-					}else{
-						xr.setValue(i, value);
-					}					
-				}				
-			}
+			redistribute(xr, truncated, value, excess);
 		}
 		return new RestrictorResult(changed, truncated);
 	}
@@ -102,9 +71,13 @@ public class ProportionalRestrictor implements Restrictor {
 		
 		boolean changed=false;
 		XReal xr=new XReal(solution);
+		double[]copy=new double[xr.size()];
 		double excess=0;
 		double value=0;
-		double final_value=0;
+		
+		for (int i = 0; i < xr.size(); i++) {
+			copy[i]=xr.getValue(i);
+		}
 		
 		//truncar a _pmax y guardar el exceso
 		for (int i = 0; i < xr.size(); i++) {
@@ -119,38 +92,59 @@ public class ProportionalRestrictor implements Restrictor {
 		
 		//repartir el exceso de modo proporcional		
 		if(changed){
-			double sum=0;
-			for (int i = 0; i < xr.size(); i++) {
-				value=xr.getValue(i);
-				if(!truncated[i]){
-					sum+=value;
-				}				
-			}
-			for (int i = 0; i < xr.size(); i++) {
-				value=xr.getValue(i);
-				if(!truncated[i]){
-					final_value=value+(value/sum)*excess;
-					//No asignar nunca Nan, habra que ver como afecta a las soluciones
-					if(new Double(final_value).isNaN()){
-						xr.setValue(i, 0);
-					}else{
-						xr.setValue(i, value);
-					}	
-				}				
-			}
+			redistribute(xr, truncated, value, excess);
 		}				
 		return new RestrictorResult(changed, truncated);
 	}
 
+	private void redistribute(XReal xr, boolean[] truncated, double value, double excess ) throws JMException{
+		double sum=0;
+		double final_value=0;
+		for (int i = 0; i < xr.size(); i++) {
+			value=xr.getValue(i);
+			if(!truncated[i]){
+				sum+=value;
+			}				
+		}
+		if(sum!=0){
+			for (int i = 0; i < xr.size(); i++) {
+				value=xr.getValue(i);
+				if(!truncated[i]){
+					final_value=value+(value/sum)*excess;									
+					xr.setValue(i, final_value);						
+				}				
+			}
+		}else{			
+			for (int i = 0; i < xr.size(); i++) {
+				value=xr.getValue(i);
+				if(!truncated[i]){
+					xr.setValue(i, excess);	
+					break;
+				}
+			}					
+		}		
+	}	
+	
 	private boolean[] reset(boolean[] b){
 		for (int i = 0; i < b.length; i++) {
 			b[i]=false;
 		}
 		return b;
 	}
-
+	
 	@Override
 	public String getName() {		
 		return "Prop";
 	}
+
+	@Override
+	public double getMax() {		
+		return _pmax;
+	}
+
+	@Override
+	public double getMin() {
+		return _pmin;
+	}
+
 }

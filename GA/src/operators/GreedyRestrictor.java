@@ -118,5 +118,15 @@ public class GreedyRestrictor implements Restrictor {
 	public String getName() {		
 		return "Greedy";
 	}
+
+	@Override
+	public double getMax() {		
+		return _pmax;
+	}
+
+	@Override
+	public double getMin() {
+		return _pmin;
+	}
 	
 }

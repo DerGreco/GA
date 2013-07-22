@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 import org.apache.commons.math3.genetics.TournamentSelection;
 
+import operators.EscalationRestrictor;
 import operators.GreedyRestrictor;
 import operators.ProportionalRestrictor;
 import util.JMException;
@@ -24,12 +25,19 @@ public class Run {
 	 * @throws JMException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException, JMException {
-		Results res=new Results();		
-		MyNSGAIIExperiment exp=new MyNSGAIIExperiment(new ProportionalRestrictor());		
+		Results res=new Results();	
+		MyNSGAIIExperiment exp=null;
 		String[] folders=new String[2];
+		/*
+		exp=new MyNSGAIIExperiment(new ProportionalRestrictor());				
 		folders=exp.experiment();	
 		res.results(folders);
+		
 		exp=new MyNSGAIIExperiment(new GreedyRestrictor());
+		folders=exp.experiment();
+		res.results(folders);
+		*/
+		exp=new MyNSGAIIExperiment(new EscalationRestrictor());
 		folders=exp.experiment();
 		res.results(folders);
 		

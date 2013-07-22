@@ -58,6 +58,17 @@ public class MyProblem extends Problem {
 		Normalizer norm=new Normalizer();			
 		norm.norm(s);
 		_rest.rearrange(s);
+		double sum, max, min, value;
+		sum=max=min=value=0;
+		XReal xr=new XReal(s);
+		min=_rest.getMin();
+		max=_rest.getMax();
+		for (int i = 0; i < xr.size(); i++) {
+			value=xr.getValue(i);
+			if((value!=0 && value<min) || value>max)System.out.println("Falla el restrictor, limites");
+			sum+=value;
+		}
+		if(sum<0.99999999 || sum>1.00000001)System.out.println("Falla el restrictor, normalizacion");
 	}
 
 
