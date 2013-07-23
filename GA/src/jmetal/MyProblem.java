@@ -36,6 +36,8 @@ public class MyProblem extends Problem {
 		_rest=r;
 	}
 	
+	public MyProblem(){}
+	
 	
 	@Override
 	public void evaluate(Solution solution) throws JMException {
@@ -54,21 +56,29 @@ public class MyProblem extends Problem {
 		solution.setObjective(1, f[1]); //con los dos en positivo (o en negativo) tambien falla alguna vez.
 	}
 	
-	public void evaluateConstraints (Solution s) throws JMException{
+	public void evaluateConstraints (Solution s) throws JMException{	
+		XReal xr=new XReal(s);
+		double[]copy=new double[xr.size()];
+		for (int i = 0; i < copy.length; i++) {
+			copy[i]=xr.getValue(i);
+		}
 		Normalizer norm=new Normalizer();			
 		norm.norm(s);
 		_rest.rearrange(s);
 		double sum, max, min, value;
-		sum=max=min=value=0;
-		XReal xr=new XReal(s);
+		sum=max=min=value=0;		
 		min=_rest.getMin();
 		max=_rest.getMax();
 		for (int i = 0; i < xr.size(); i++) {
 			value=xr.getValue(i);
-			if((value!=0 && value<min) || value>max)System.out.println("Falla el restrictor, limites");
+			if((value!=0 && value<min) || value>max){
+				System.out.println("Falla el restrictor, limites");
+			}
 			sum+=value;
 		}
-		if(sum<0.99999999 || sum>1.00000001)System.out.println("Falla el restrictor, normalizacion");
+		if(sum<0.99999999 || sum>1.00000001){
+			System.out.println("Falla el restrictor, normalizacion");
+		}
 	}
 
 
