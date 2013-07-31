@@ -65,7 +65,8 @@ public class GreedyRestrictor implements Restrictor {
 							Collections.reverse(ordered_indexes);
 							reversed=true;
 						}
-						redistribute(ordered_indexes, solution);
+						throw new JMException("Si hace falta redistribute en GreedyRestrictor");
+						//redistribute(ordered_indexes, solution);
 					}					
 				}				
 			}
@@ -92,6 +93,7 @@ public class GreedyRestrictor implements Restrictor {
 		return toRet;
 	}
 
+	/*
 	private void redistribute(Vector<Integer> reverseOrder, Solution s) throws JMException{
 		
 		XReal xr=new XReal(s);
@@ -105,6 +107,7 @@ public class GreedyRestrictor implements Restrictor {
 			else{				
 				if(value-to_min>=_pmin){
 					xr.setValue(index_to_min, _pmin);
+					//esto no es value-_pmin???
 					xr.setValue(i, value-to_min);
 				}else{
 					xr.setValue(i, _pmin);
@@ -113,6 +116,7 @@ public class GreedyRestrictor implements Restrictor {
 			}
 		}
 	}
+	*/
 
 	@Override
 	public String getName() {		

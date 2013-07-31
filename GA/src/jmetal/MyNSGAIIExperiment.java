@@ -50,7 +50,7 @@ public class MyNSGAIIExperiment extends Experiment {
 
 		      parameters[0].put("crossoverOperator_", c0);
 		      parameters[1].put("crossoverOperator_", c1);
-		      parameters[2].put("crossoverOperator_", c2);
+		      //parameters[2].put("crossoverOperator_", c2);
 
 		      if ((!paretoFrontFile_[problemIndex].equals("")) || 
 		      		(paretoFrontFile_[problemIndex] == null)) {
@@ -80,8 +80,8 @@ public class MyNSGAIIExperiment extends Experiment {
 	    exp.experimentName_  = "MyNSGAIIExperiment" ;
 	    exp.algorithmNameList_   = new String[] {
 	      "SBX"+_r.getName(),
-	      "BLX"+_r.getName(),
-	      "DEX"+_r.getName()
+	      "BLX"+_r.getName()
+	      ,"DEX"+_r.getName()
 	      } ;
 	    exp.problemList_     = new String[] {
 	      "0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"} ;
@@ -107,7 +107,7 @@ public class MyNSGAIIExperiment extends Experiment {
 	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
-	    exp.independentRuns_ = 2 ;
+	    exp.independentRuns_ = 5 ;
 	    
 	    // Run the experiments
 	    int numberOfThreads ;

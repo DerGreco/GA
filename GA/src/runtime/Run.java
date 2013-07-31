@@ -32,15 +32,15 @@ public class Run {
 		exp=new MyNSGAIIExperiment(new ProportionalRestrictor());				
 		folders=exp.experiment();	
 		res.results(folders);
-		
+		*/
 		exp=new MyNSGAIIExperiment(new GreedyRestrictor());
 		folders=exp.experiment();
 		res.results(folders);
-		*/
+		/*
 		exp=new MyNSGAIIExperiment(new EscalationRestrictor());
 		folders=exp.experiment();
 		res.results(folders);
-		
+		*/
 		String[] command ={"cmd"};
 		String[] envp = {"path="+System.getenv("Path")};		
 	    Process p = Runtime.getRuntime().exec(command, envp);	    

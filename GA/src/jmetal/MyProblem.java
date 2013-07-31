@@ -1,5 +1,6 @@
 package jmetal;
 
+import operators.EscalationRestrictor;
 import operators.GreedyRestrictor;
 import operators.Normalizer;
 import operators.ProportionalRestrictor;
@@ -62,8 +63,10 @@ public class MyProblem extends Problem {
 		for (int i = 0; i < copy.length; i++) {
 			copy[i]=xr.getValue(i);
 		}
-		Normalizer norm=new Normalizer();			
-		norm.norm(s);
+		if(!(_rest instanceof EscalationRestrictor)){
+			Normalizer norm=new Normalizer();			
+			norm.norm(s);
+		}		
 		_rest.rearrange(s);
 		double sum, max, min, value;
 		sum=max=min=value=0;		
