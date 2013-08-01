@@ -54,12 +54,13 @@ public class GreedyRestrictor implements Restrictor {
 			for (Integer i : ordered_indexes) {
 				value=xr.getValue(i);
 				if(value<_pmax){
-					if(value+excess>_pmax){
+					if(value+excess>_pmax){						
 						xr.setValue(i, _pmax);
 						excess-=(_pmax-value);
-					}else if(value+excess>=_pmin && value+excess<=_pmax){
+					}else if(value+excess>=_pmin && value+excess<=_pmax){						
 						xr.setValue(i, value+excess);
-						excess=0;						
+						excess=0;		
+			///////////////////////////////////////////////////////////////////////////////////////////////////			
 					}else if(value==0 && excess<_pmin && excess>0){
 						if(!reversed){
 							Collections.reverse(ordered_indexes);
@@ -67,6 +68,7 @@ public class GreedyRestrictor implements Restrictor {
 						}
 						throw new JMException("Si hace falta redistribute en GreedyRestrictor");
 						//redistribute(ordered_indexes, solution);
+			///////////////////////////////////////////////////////////////////////////////////////////////////			
 					}					
 				}				
 			}
