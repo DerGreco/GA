@@ -19,7 +19,7 @@ public class Results {
 		String [] indicators={"EPSILON","IGD","SPREAD","HV"};
 		String [] operators={"BLX"
 				,"SBX"
-				,"DEX"
+				//,"DEX"
 				};
 		int runs=15;
 		double aux=0;

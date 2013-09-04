@@ -46,7 +46,7 @@ public class MyNSGAIIExperiment extends Experiment {
 		      
 		      String c0="SBXCrossover";		      		      	     
 		      String c1="BLXAlphaCrossover";
-		      String c2="DifferentialEvolutionCrossover";
+		      //String c2="DifferentialEvolutionCrossover";
 
 		      parameters[0].put("crossoverOperator_", c0);
 		      parameters[1].put("crossoverOperator_", c1);
@@ -81,7 +81,7 @@ public class MyNSGAIIExperiment extends Experiment {
 	    exp.algorithmNameList_   = new String[] {
 	      "SBX"+_r.getName(),
 	      "BLX"+_r.getName()
-	      ,"DEX"+_r.getName()
+	      //,"DEX"+_r.getName()
 	      } ;
 	    exp.problemList_     = new String[] {
 	      "0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"} ;
@@ -107,7 +107,7 @@ public class MyNSGAIIExperiment extends Experiment {
 	    
 	    //exp.algorithmSettings_ = new Settings[numberOfAlgorithms] ;
 	    
-	    exp.independentRuns_ = 5 ;
+	    exp.independentRuns_ = 20 ;
 	    
 	    // Run the experiments
 	    int numberOfThreads ;
