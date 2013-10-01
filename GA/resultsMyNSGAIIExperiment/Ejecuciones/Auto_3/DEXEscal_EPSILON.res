@@ -1,0 +1,15 @@
+NaN
+NaN
+NaN
+NaN
+NaN
+NaN
+3.005720338558675E-4
+NaN
+NaN
+NaN
+NaN
+NaN
+NaN
+NaN
+NaN

@@ -1,0 +1,31 @@
+	BLXEscal_HV.res	BLXGreedy_HV.res	BLXProp_HV.res	SBXEscal_HV.res	SBXGreedy_HV.res	SBXProp_HV.res
+BLXEscal_HV.res	NA	NA	NA	NA	NA	NA
+BLXGreedy_HV.res	=	NA	NA	NA	NA	NA
+BLXProp_HV.res	=	=	NA	NA	NA	NA
+SBXEscal_HV.res	=	=	=	NA	NA	NA
+SBXGreedy_HV.res	=	=	=	=	NA	NA
+SBXProp_HV.res	=	=	=	=	=	NA
+						
+	BLXEscal_SPREAD.res	BLXGreedy_SPREAD.res	BLXProp_SPREAD.res	SBXEscal_SPREAD.res	SBXGreedy_SPREAD.res	SBXProp_SPREAD.res
+BLXEscal_SPREAD.res	NA	NA	NA	NA	NA	NA
+BLXGreedy_SPREAD.res	=	NA	NA	NA	NA	NA
+BLXProp_SPREAD.res	=	=	NA	NA	NA	NA
+SBXEscal_SPREAD.res	=	+	++	NA	NA	NA
+SBXGreedy_SPREAD.res	=	=	=	=	NA	NA
+SBXProp_SPREAD.res	=	=	=	-	=	NA
+						
+	BLXEscal_IGD.res	BLXGreedy_IGD.res	BLXProp_IGD.res	SBXEscal_IGD.res	SBXGreedy_IGD.res	SBXProp_IGD.res
+BLXEscal_IGD.res	NA	NA	NA	NA	NA	NA
+BLXGreedy_IGD.res	=	NA	NA	NA	NA	NA
+BLXProp_IGD.res	=	=	NA	NA	NA	NA
+SBXEscal_IGD.res	=	=	=	NA	NA	NA
+SBXGreedy_IGD.res	+	=	=	=	NA	NA
+SBXProp_IGD.res	=	=	=	=	-	NA
+						
+	BLXEscal_EPSILON.res	BLXGreedy_EPSILON.res	BLXProp_EPSILON.res	SBXEscal_EPSILON.res	SBXGreedy_EPSILON.res	SBXProp_EPSILON.res
+BLXEscal_EPSILON.res	NA	NA	NA	NA	NA	NA
+BLXGreedy_EPSILON.res	=	NA	NA	NA	NA	NA
+BLXProp_EPSILON.res	=	=	NA	NA	NA	NA
+SBXEscal_EPSILON.res	=	=	=	NA	NA	NA
+SBXGreedy_EPSILON.res	=	=	+	=	NA	NA
+SBXProp_EPSILON.res	=	=	=	=	=	NA

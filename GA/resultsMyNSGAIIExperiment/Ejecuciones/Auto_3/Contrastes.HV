@@ -1,0 +1,10 @@
+	BLXEscal_HV.res	BLXGreedy_HV.res	BLXProp_HV.res	DEXEscal_HV.res	DEXGreedy_HV.res	DEXProp_HV.res	SBXEscal_HV.res	SBXGreedy_HV.res	SBXProp_HV.res
+BLXEscal_HV.res	NA	NA	NA	NA	NA	NA	NA	NA	NA
+BLXGreedy_HV.res	++	NA	NA	NA	NA	NA	NA	NA	NA
+BLXProp_HV.res	++	=	NA	NA	NA	NA	NA	NA	NA
+DEXEscal_HV.res	--	--	--	NA	NA	NA	NA	NA	NA
+DEXGreedy_HV.res	++	=	=	++	NA	NA	NA	NA	NA
+DEXProp_HV.res	++	=	=	++	=	NA	NA	NA	NA
+SBXEscal_HV.res	++	=	=	++	=	=	NA	NA	NA
+SBXGreedy_HV.res	++	=	=	++	=	=	=	NA	NA
+SBXProp_HV.res	++	=	=	++	=	=	=	=	NA

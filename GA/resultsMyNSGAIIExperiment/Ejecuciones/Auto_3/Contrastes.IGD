@@ -1,0 +1,7 @@
+	BLXGreedy_IGD.res	BLXProp_IGD.res	DEXGreedy_IGD.res	DEXProp_IGD.res	SBXGreedy_IGD.res	SBXProp_IGD.res
+BLXGreedy_IGD.res	NA	NA	NA	NA	NA	NA
+BLXProp_IGD.res	=	NA	NA	NA	NA	NA
+DEXGreedy_IGD.res	=	+	NA	NA	NA	NA
+DEXProp_IGD.res	=	=	=	NA	NA	NA
+SBXGreedy_IGD.res	=	+	=	+	NA	NA
+SBXProp_IGD.res	-	=	--	=	--	NA

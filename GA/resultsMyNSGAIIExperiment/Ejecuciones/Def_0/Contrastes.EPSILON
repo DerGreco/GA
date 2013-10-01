@@ -1,0 +1,7 @@
+"BLXEscal_EPSILON.res"	"BLXGreedy_EPSILON.res"	"BLXProp_EPSILON.res"	"SBXEscal_EPSILON.res"	"SBXGreedy_EPSILON.res"	"SBXProp_EPSILON.res"
+"BLXEscal_EPSILON.res"	"NA"	"NA"	"NA"	"NA"	"NA"	"NA"
+"BLXGreedy_EPSILON.res"	"="	"NA"	"NA"	"NA"	"NA"	"NA"
+"BLXProp_EPSILON.res"	"="	"="	"NA"	"NA"	"NA"	"NA"
+"SBXEscal_EPSILON.res"	"="	"="	"="	"NA"	"NA"	"NA"
+"SBXGreedy_EPSILON.res"	"="	"="	"+"	"="	"NA"	"NA"
+"SBXProp_EPSILON.res"	"="	"="	"="	"="	"="	"NA"
